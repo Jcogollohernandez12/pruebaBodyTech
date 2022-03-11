@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CamaraScreen extends StatefulWidget {
   const CamaraScreen({
@@ -45,7 +46,18 @@ class _CamaraScreenState extends State<CamaraScreen> {
             "Tomar una foto",
             style: TextStyle(fontSize: 20.0, color: Colors.black),
           ),
-          onPressed: () {},
+          onPressed: () async {
+            final picker = ImagePicker();
+            final PickedFile? pickedFile = await picker.getImage(
+                // source: ImageSource.gallery,
+                source: ImageSource.camera,
+                imageQuality: 100);
+
+            if (pickedFile == null) {
+              print('No seleccionó nada');
+              return;
+            }
+          },
         ),
       ),
     );
