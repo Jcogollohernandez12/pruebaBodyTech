@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:prueba2/routes/routes.dart';
@@ -5,8 +6,14 @@ import 'package:prueba2/routes/routes.dart';
 import 'Screens/screens.dart';
 import 'Services/services.dart';
 
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
+List<CameraDescription> camaras = []; //variable global para la camaras
+Future<void> main() async {
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    camaras = await availableCameras();
+  } on CameraException catch (e) {
+    print('Error in fetching the cameras: $e');
+  }
   runApp(AppState());
 }
 

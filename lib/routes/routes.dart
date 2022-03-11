@@ -7,7 +7,5 @@ Map<String, WidgetBuilder> obtenerRutas() {
     'login': (BuildContext context) => const LoginApp(),
     'registrar': (BuildContext context) => const RegistrarScreen(),
     'paginas': (BuildContext context) => const PaginasOpcion(),
-    'camara': (BuildContext context) => const CamaraScreen(),
-    'lista': (BuildContext context) => const ListaUsuariosScreen(),
   };
 }

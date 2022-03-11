@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:prueba2/Screens/Camara.dart';
-import 'package:prueba2/Screens/Detalles.dart';
 import 'package:prueba2/Screens/Lista.dart';
 
 class PaginasOpcion extends StatefulWidget {
@@ -16,6 +15,7 @@ class _PaginasOpcionState extends State<PaginasOpcion> {
   @override
   Widget build(BuildContext context) {
     //conteido de as paginas
+
     final _contenidoPaginas = <Widget>[
       const Center(
         child: CamaraScreen(),
