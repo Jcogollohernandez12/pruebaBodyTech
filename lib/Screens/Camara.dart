@@ -11,6 +11,7 @@ class CamaraScreen extends StatefulWidget {
 }
 
 class _CamaraScreenState extends State<CamaraScreen> {
+  String urlimagen = '';
   @override
   Widget build(BuildContext context) {
     return Stack(
