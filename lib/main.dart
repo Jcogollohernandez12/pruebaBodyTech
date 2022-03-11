@@ -5,7 +5,10 @@ import 'package:prueba2/routes/routes.dart';
 import 'Screens/screens.dart';
 import 'Services/services.dart';
 
-void main() => runApp(AppState());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(AppState());
+}
 
 class AppState extends StatelessWidget {
   @override
