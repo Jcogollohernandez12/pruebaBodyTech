@@ -28,7 +28,13 @@ class _CamaraScreenState extends State<CamaraScreen> {
         Positioned(
           top: 100,
           left: 20,
-          child: image(),
+          child: SizedBox(
+            height: 600,
+            width: 380,
+            child: Card(
+              child: image(),
+            ),
+          ),
         ),
       ],
     );
@@ -36,15 +42,10 @@ class _CamaraScreenState extends State<CamaraScreen> {
 
   Widget image() {
     if (_imageFileList != null) {
-      return kIsWeb
-          ? Image.network(
-              _imageFileList![0].path,
-              fit: BoxFit.cover,
-            )
-          : Image.file(
-              File(_imageFileList![0].path),
-              fit: BoxFit.cover,
-            );
+      return Image.file(
+        File(_imageFileList![0].path),
+        fit: BoxFit.cover,
+      );
     }
     return const Text(
       'No se tomo ninguna foto',
@@ -75,7 +76,7 @@ class _CamaraScreenState extends State<CamaraScreen> {
             final XFile? pickedFile = await picker.pickImage(
               // source: ImageSource.gallery,
               source: ImageSource.camera,
-              imageQuality: 100,
+              imageQuality: 50,
             );
             setState(() {
               _imageFile = pickedFile;
