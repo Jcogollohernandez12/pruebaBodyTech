@@ -29,9 +29,15 @@ class _CamaraScreenState extends State<CamaraScreen> {
           top: 100,
           left: 20,
           child: SizedBox(
-            height: 600,
+            height: 550,
             width: 380,
-            child: Card(
+            child: ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(45),
+                topRight: Radius.circular(45),
+                bottomLeft: Radius.circular(45),
+                bottomRight: Radius.circular(45),
+              ),
               child: image(),
             ),
           ),
