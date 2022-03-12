@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -12,20 +15,40 @@ class CamaraScreen extends StatefulWidget {
 
 class _CamaraScreenState extends State<CamaraScreen> {
   String urlimagen = '';
+  List<XFile>? _imageFileList;
+  set _imageFile(XFile? value) {
+    _imageFileList = value == null ? null : <XFile>[value];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         _botonFoto(),
-        const Positioned(
+        Positioned(
           top: 100,
           left: 20,
-          child: Text(
-            'No se tomo ninguna foto',
-            style: TextStyle(fontSize: 20),
-          ),
+          child: image(),
         ),
       ],
+    );
+  }
+
+  Widget image() {
+    if (_imageFileList != null) {
+      return kIsWeb
+          ? Image.network(
+              _imageFileList![0].path,
+              fit: BoxFit.cover,
+            )
+          : Image.file(
+              File(_imageFileList![0].path),
+              fit: BoxFit.cover,
+            );
+    }
+    return const Text(
+      'No se tomo ninguna foto',
+      style: TextStyle(fontSize: 20),
     );
   }
 
@@ -49,13 +72,18 @@ class _CamaraScreenState extends State<CamaraScreen> {
           ),
           onPressed: () async {
             final picker = ImagePicker();
-            final PickedFile? pickedFile = await picker.getImage(
-                // source: ImageSource.gallery,
-                source: ImageSource.camera,
-                imageQuality: 100);
+            final XFile? pickedFile = await picker.pickImage(
+              // source: ImageSource.gallery,
+              source: ImageSource.camera,
+              imageQuality: 100,
+            );
+            setState(() {
+              _imageFile = pickedFile;
+            });
 
             if (pickedFile == null) {
               print('No seleccionó nada');
+
               return;
             }
           },
