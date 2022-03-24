@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:prueba2/routes/routes.dart';
+import 'package:prueba2/src/routes/routes.dart';
 
-import 'Screens/screens.dart';
-import 'Services/services.dart';
+import 'src/Screens/screens.dart';
+import 'src/Services/services.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

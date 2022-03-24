@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:prueba2/Models/models.dart';
-import 'package:prueba2/Services/services.dart';
 
+import '../Models/models.dart';
+import '../Services/services.dart';
 import 'screens.dart';
 
 class ListaUsuariosScreen extends StatelessWidget {

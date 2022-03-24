@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:prueba2/Widgets/widget.dart';
+import 'package:prueba2/src/Widgets/widget.dart';
 
+import '../../ui/input_decorations.dart';
 import '../Providers/login_from_provider.dart';
 import '../Services/services.dart';
-import '../ui/input_decorations.dart';
 
 class RegistrarScreen extends StatelessWidget {
   const RegistrarScreen({Key? key}) : super(key: key);

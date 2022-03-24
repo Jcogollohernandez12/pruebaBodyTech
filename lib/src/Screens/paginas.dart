@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prueba2/Screens/Camara.dart';
-import 'package:prueba2/Screens/Lista.dart';
+import 'package:prueba2/src/Screens/screens.dart';
 
 class PaginasOpcion extends StatefulWidget {
   const PaginasOpcion({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:prueba2/Models/models.dart';
+import 'package:prueba2/src/Models/models.dart';
 import 'package:http/http.dart' as http;
 
 class UsuariosService extends ChangeNotifier {
