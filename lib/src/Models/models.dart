@@ -1,1 +1,1 @@
-export 'package:prueba2/Models/Usuarios.dart';
+export 'package:prueba2/src/Models/Usuarios.dart';
