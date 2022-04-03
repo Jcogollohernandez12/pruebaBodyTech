@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'BodyTech',
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: 'paginas',
       routes: obtenerRutas(),
       //si la ruta no esta definida se dispara el metodo onGenerateRoute
       onGenerateRoute: (RouteSettings settings) {

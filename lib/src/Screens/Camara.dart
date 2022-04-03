@@ -1,6 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:logger/logger.dart';
+import 'package:image/image.dart' as img;
+import 'package:tflite_flutter_helper/tflite_flutter_helper.dart';
+
+import '../IA/clasificacionImg.dart';
 
 class CamaraScreen extends StatefulWidget {
   const CamaraScreen({
@@ -14,9 +19,21 @@ class CamaraScreen extends StatefulWidget {
 class _CamaraScreenState extends State<CamaraScreen> {
   String urlimagen = '';
   List<XFile>? _imageFileList;
+  late Classifier _classifier;
+  final picker = ImagePicker();
+  var logger = Logger();
+  img.Image? fox;
+  Category? category;
+  File? _image;
 
   set _imageFile(XFile? value) {
     _imageFileList = value == null ? null : <XFile>[value];
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _classifier = ClassifierQuant();
   }
 
   @override
@@ -77,7 +94,6 @@ class _CamaraScreenState extends State<CamaraScreen> {
             style: TextStyle(fontSize: 20.0, color: Colors.black),
           ),
           onPressed: () async {
-            final picker = ImagePicker();
             final XFile? pickedFile = await picker.pickImage(
               // source: ImageSource.gallery,
               source: ImageSource.camera,
@@ -85,6 +101,10 @@ class _CamaraScreenState extends State<CamaraScreen> {
             );
             setState(() {
               _imageFile = pickedFile;
+              //_image = File(pickedFile!.path);
+              // _imageWidget = Image.file(_image!);
+
+              // _predict();
             });
 
             // _imageClasification(pickedFile!);
@@ -98,5 +118,14 @@ class _CamaraScreenState extends State<CamaraScreen> {
         ),
       ),
     );
+  }
+
+  void _predict() async {
+    img.Image imageInput = img.decodeImage(_image!.readAsBytesSync())!;
+    var pred = _classifier.predict(imageInput);
+
+    setState(() {
+      category = pred;
+    });
   }
 }
