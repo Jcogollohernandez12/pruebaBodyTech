@@ -1,6 +1,4 @@
 import 'dart:io';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -16,6 +14,7 @@ class CamaraScreen extends StatefulWidget {
 class _CamaraScreenState extends State<CamaraScreen> {
   String urlimagen = '';
   List<XFile>? _imageFileList;
+
   set _imageFile(XFile? value) {
     _imageFileList = value == null ? null : <XFile>[value];
   }
@@ -87,6 +86,8 @@ class _CamaraScreenState extends State<CamaraScreen> {
             setState(() {
               _imageFile = pickedFile;
             });
+
+            // _imageClasification(pickedFile!);
 
             if (pickedFile == null) {
               print('No seleccionó nada');
