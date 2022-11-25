@@ -80,42 +80,47 @@ class _CamaraScreenState extends State<CamaraScreen> {
     return Positioned(
       top: 10,
       left: 60,
-      child: Container(
-        margin: const EdgeInsets.all(25),
-        child: OutlinedButton.icon(
-          icon: const Icon(
-            Icons.camera_alt,
-            color: Colors.amber,
+      child: Row(
+        children: [
+          Text('Es:  ${category?.label}'),
+          Container(
+            margin: const EdgeInsets.all(25),
+            child: OutlinedButton.icon(
+              icon: const Icon(
+                Icons.camera_alt,
+                color: Colors.amber,
+              ),
+              clipBehavior: Clip.none,
+              autofocus: true,
+              label: const Text(
+                "Tomar una foto",
+                style: TextStyle(fontSize: 20.0, color: Colors.black),
+              ),
+              onPressed: () async {
+                final XFile? pickedFile = await picker.pickImage(
+                  // source: ImageSource.gallery,
+                  source: ImageSource.camera,
+                  imageQuality: 50,
+                );
+                setState(() {
+                  _imageFile = pickedFile;
+                  _image = File(pickedFile!.path);
+                  // _imageWidget = Image.file(_image!);
+
+                  _predict();
+                });
+
+                // _imageClasification(pickedFile!);
+
+                if (pickedFile == null) {
+                  print('No seleccionó nada');
+
+                  return;
+                }
+              },
+            ),
           ),
-          clipBehavior: Clip.none,
-          autofocus: true,
-          label: const Text(
-            "Tomar una foto",
-            style: TextStyle(fontSize: 20.0, color: Colors.black),
-          ),
-          onPressed: () async {
-            final XFile? pickedFile = await picker.pickImage(
-              // source: ImageSource.gallery,
-              source: ImageSource.camera,
-              imageQuality: 50,
-            );
-            setState(() {
-              _imageFile = pickedFile;
-              //_image = File(pickedFile!.path);
-              // _imageWidget = Image.file(_image!);
-
-              // _predict();
-            });
-
-            // _imageClasification(pickedFile!);
-
-            if (pickedFile == null) {
-              print('No seleccionó nada');
-
-              return;
-            }
-          },
-        ),
+        ],
       ),
     );
   }
@@ -126,6 +131,8 @@ class _CamaraScreenState extends State<CamaraScreen> {
 
     setState(() {
       category = pred;
+
+      print(category);
     });
   }
 }
